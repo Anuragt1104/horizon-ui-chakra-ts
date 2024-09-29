@@ -22,7 +22,7 @@ export default function WeeklyRevenue(props: { [x: string]: any }) {
 				<Text me='auto' color={textColor} fontSize='xl' fontWeight='700' lineHeight='100%'>
 				Bias Risk Score
 				</Text>
-				{/* <Button
+				<Button
 					alignItems='center'
 					justifyContent='center'
 					bg={bgButton}
@@ -35,7 +35,7 @@ export default function WeeklyRevenue(props: { [x: string]: any }) {
 					borderRadius='10px'
 					{...rest}>
 					<Icon as={MdBarChart} color={iconColor} w='24px' h='24px' />
-				</Button> */}
+				</Button>
 			</Flex>
 
 			<Box h='240px' mt='auto' w='100%'>

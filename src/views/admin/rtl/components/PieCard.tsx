@@ -22,13 +22,13 @@ export default function Conversion(props: { [x: string]: any }) {
 				w='100%'
 				mb='8px'>
 				<Text color={textColor} fontSize='md' fontWeight='600' mt='4px'>
-					Your Pie Chart
+				Job Roles Distribution:
 				</Text>
-				<Select fontSize='sm' variant='subtle' defaultValue='monthly' width='unset' fontWeight='700'>
+				{/* <Select fontSize='sm' variant='subtle' defaultValue='monthly' width='unset' fontWeight='700'>
 					<option value='daily'>Daily</option>
 					<option value='monthly'>Monthly</option>
 					<option value='yearly'>Yearly</option>
-				</Select>
+				</Select> */}
 			</Flex>
 
 			<PieChart h='100%' w='100%' chartData={pieChartData} chartOptions={pieChartOptions} />

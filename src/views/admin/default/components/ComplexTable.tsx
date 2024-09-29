@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Progress, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Icon, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react';
 import {
 	createColumnHelper,
 	flexRender,
@@ -12,36 +12,47 @@ import Card from 'components/card/Card';
 import Menu from 'components/menu/MainMenu';
 import * as React from 'react';
 // Assets
-import { MdCancel, MdCheckCircle, MdOutlineError } from 'react-icons/md';
-
-
+import { MdOutlineError } from 'react-icons/md';  // Only keeping the exclamation mark icon
 
 type RowObj = {
-	name: string;
-	status: string;
-	date: string; 
-	progress: number;
+	Id: string;
+	status: number;  // Changing status to a fraud risk number
+	date: string;
+	Overall: number;
 };
 
 const columnHelper = createColumnHelper<RowObj>();
 
-// const columns = columnsDataCheck;
-export default function ComplexTable(props: { tableData: any }) {
-	const { tableData } = props;
+export default function ComplexTable() {
 	const [ sorting, setSorting ] = React.useState<SortingState>([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
-	let defaultData = tableData;
+	
+	// Define table data inside the component
+	const tableData = [
+		{ Id: "1", status: 80, date: "Software Engineer", Overall: 85 },
+		{ Id: "2", status: 60, date: "Data Scientist", Overall: 78 },
+		{ Id: "3", status: 90, date: "Product Manager", Overall: 92 },
+		{ Id: "4", status: 45, date: "Business Analyst", Overall: 68 },
+		{ Id: "5", status: 72, date: "DevOps Engineer", Overall: 75 },
+		{ Id: "6", status: 95, date: "Finance Manager", Overall: 89 },
+		{ Id: "7", status: 50, date: "Consultant", Overall: 70 },
+		{ Id: "8", status: 80, date: "Software Engineer", Overall: 85 },
+		{ Id: "9", status: 60, date: "Data Scientist", Overall: 78 },
+		{ Id: "3", status: 90, date: "Product Manager", Overall: 92 },
+		{ Id: "4", status: 45, date: "Business Analyst", Overall: 68 },
+		{ Id: "5", status: 72, date: "DevOps Engineer", Overall: 75 },
+		{ Id: "6", status: 95, date: "Finance Manager", Overall: 89 },
+		{ Id: "7", status: 50, date: "Consultant", Overall: 70 },
+		// You can add more data as needed
+	];
+
 	const columns = [
-		columnHelper.accessor('name', {
-			id: 'name',
+		columnHelper.accessor('Id', {
+			id: 'id',
 			header: () => (
-				<Text
-					justifyContent='space-between'
-					align='center'
-					fontSize={{ sm: '10px', lg: '12px' }}
-					color='gray.400'>
-					NAME
+				<Text justifyContent='space-between' align='center' fontSize={{ sm: '10px', lg: '12px' }} color='gray.400'>
+					ID
 				</Text>
 			),
 			cell: (info: any) => (
@@ -55,54 +66,30 @@ export default function ComplexTable(props: { tableData: any }) {
 		columnHelper.accessor('status', {
 			id: 'status',
 			header: () => (
-				<Text
-					justifyContent='space-between'
-					align='center'
-					fontSize={{ sm: '10px', lg: '12px' }}
-					color='gray.400'>
-					STATUS
+				<Text justifyContent='space-between' align='center' fontSize={{ sm: '10px', lg: '12px' }} color='gray.400'>
+					Fraud Risk
 				</Text>
 			),
-			cell: (info) => (
-			<Flex align='center'>
-												<Icon
-													w='24px'
-													h='24px'
-													me='5px'
-													color={
-														info.getValue() === 'Approved' ? (
-															'green.500'
-														) : info.getValue() === 'Disable' ? (
-															'red.500'
-														) : info.getValue() === 'Error' ? (
-															'orange.500'
-														) : null
-													}
-													as={
-														info.getValue() === 'Approved' ? (
-															MdCheckCircle
-														) : info.getValue() === 'Disable' ? (
-															MdCancel
-														) : info.getValue() === 'Error' ? (
-															MdOutlineError
-														) : null
-													}
-												/>
-												<Text color={textColor} fontSize='sm' fontWeight='700'>
-													{info.getValue()}
-												</Text>
-											</Flex> 
-			)
+			cell: (info) => {
+				const fraudRisk = info.getValue();
+				return (
+					<Flex align='center'>
+						{/* Show an exclamation mark for fraud risks above 70 */}
+						{fraudRisk >= 70 && (
+							<Icon w='24px' h='24px' me='5px' color='orange.500' as={MdOutlineError} />
+						)}
+						<Text color={textColor} fontSize='sm' fontWeight='700'>
+							{fraudRisk} {/* Display the fraud risk score */}
+						</Text>
+					</Flex>
+				);
+			}
 		}),
 		columnHelper.accessor('date', {
 			id: 'date',
 			header: () => (
-				<Text
-					justifyContent='space-between'
-					align='center'
-					fontSize={{ sm: '10px', lg: '12px' }}
-					color='gray.400'>
-					DATE
+				<Text justifyContent='space-between' align='center' fontSize={{ sm: '10px', lg: '12px' }} color='gray.400'>
+					Job Title
 				</Text>
 			),
 			cell: (info) => (
@@ -111,25 +98,24 @@ export default function ComplexTable(props: { tableData: any }) {
 				</Text>
 			)
 		}),
-		columnHelper.accessor('progress', {
-			id: 'progress',
+		columnHelper.accessor('Overall', {
+			id: 'Overall Score',
 			header: () => (
-				<Text
-					justifyContent='space-between'
-					align='center'
-					fontSize={{ sm: '10px', lg: '12px' }}
-					color='gray.400'>
-					PROGRESS
+				<Text justifyContent='space-between' align='center' fontSize={{ sm: '10px', lg: '12px' }} color='gray.400'>
+					Overall Score
 				</Text>
 			),
 			cell: (info) => (
 				<Flex align='center'>
-					<Progress variant='table' colorScheme='brandScheme' h='8px' w='108px' value={info.getValue()} />
+					<Text color={textColor} fontSize='sm' fontWeight='700'>
+						{info.getValue()} {/* Display the overall score */}
+					</Text>
 				</Flex>
 			)
-		})
+		}),
 	];
-	const [ data, setData ] = React.useState(() => [ ...defaultData ]);
+
+	const [ data, setData ] = React.useState(() => [ ...tableData ]);
 	const table = useReactTable({
 		data,
 		columns,
@@ -141,15 +127,18 @@ export default function ComplexTable(props: { tableData: any }) {
 		getSortedRowModel: getSortedRowModel(),
 		debugTable: true
 	});
+
 	return (
-		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
+		<Card flexDirection='column' w='100%' px='0px'>
 			<Flex px='25px' mb="8px" justifyContent='space-between' align='center'>
 				<Text color={textColor} fontSize='22px' fontWeight='700' lineHeight='100%'>
-					Complex Table
+					Top-Ranked Candidates
 				</Text>
 				<Menu />
 			</Flex>
-			<Box>
+
+			{/* This Box contains the table and makes it scrollable */}
+			<Box overflowY="scroll" overflowX="auto" maxH="600px">
 				<Table variant='simple' color='gray.500' mb='24px' mt="12px">
 					<Thead>
 						{table.getHeaderGroups().map((headerGroup) => (
@@ -159,19 +148,13 @@ export default function ComplexTable(props: { tableData: any }) {
 										<Th
 											key={header.id}
 											colSpan={header.colSpan}
-											pe='10px' 
+											pe='10px'
 											borderColor={borderColor}
 											cursor='pointer'
 											onClick={header.column.getToggleSortingHandler()}>
-											<Flex
-												justifyContent='space-between'
-												align='center'
-												fontSize={{ sm: '10px', lg: '12px' }}
-												color='gray.400'>
-												{flexRender(header.column.columnDef.header, header.getContext())}{{
-													asc: '',
-													desc: '',
-												}[header.column.getIsSorted() as string] ?? null}
+											<Flex justifyContent='space-between' align='center' fontSize={{ sm: '10px', lg: '12px' }} color='gray.400'>
+												{flexRender(header.column.columnDef.header, header.getContext())}
+												{{ asc: '', desc: '' }[header.column.getIsSorted() as string] ?? null}
 											</Flex>
 										</Th>
 									);
@@ -180,7 +163,7 @@ export default function ComplexTable(props: { tableData: any }) {
 						))}
 					</Thead>
 					<Tbody>
-						{table.getRowModel().rows.slice(0, 5).map((row) => {
+						{table.getRowModel().rows.map((row) => {
 							return (
 								<Tr key={row.id}>
 									{row.getVisibleCells().map((cell) => {
@@ -203,4 +186,3 @@ export default function ComplexTable(props: { tableData: any }) {
 		</Card>
 	);
 }
- 

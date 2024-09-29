@@ -4,7 +4,7 @@
  | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
  |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
  |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
+																																																																																	   
 =========================================================
 * Horizon UI - v1.1.0
 =========================================================
@@ -55,23 +55,23 @@ export default function UserReports() {
 							icon={<Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />}
 						/>
 					}
-					name='Earnings'
-					value='$350.4'
+					name='Total Candidates'
+					value='1000'
 				/>
 				<MiniStatistics
-					startContent={
-						<IconBox
-							w='56px'
-							h='56px'
-							bg={boxBg}
-							icon={<Icon w='32px' h='32px' as={MdAttachMoney} color={brandColor} />}
-						/>
-					}
-					name='Spend this month'
-					value='$642.39'
+					// startContent={
+					// 	// <IconBox
+					// 	// 	w='56px'
+					// 	// 	h='56px'
+					// 	// 	bg={boxBg}
+					// 	// 	icon={<Icon w='32px' h='32px' as={MdAttachMoney} color={brandColor} />}
+					// 	// />
+					// }
+					name='Average Fraud Risk'
+					value='50'
 				/>
-				<MiniStatistics growth='+23%' name='Sales' value='$574.34' />
-				<MiniStatistics
+				{/* <MiniStatistics growth='+23%' name='Sales' value='$574.34' /> */}
+				{/* <MiniStatistics
 					endContent={
 						<Flex me='-16px' mt='10px'>
 							<FormLabel htmlFor='balance'>
@@ -86,8 +86,8 @@ export default function UserReports() {
 					}
 					name='Your balance'
 					value='$1,000'
-				/>
-				<MiniStatistics
+				/> */}
+				{/* <MiniStatistics
 					startContent={
 						<IconBox
 							w='56px'
@@ -98,8 +98,8 @@ export default function UserReports() {
 					}
 					name='New Tasks'
 					value='154'
-				/>
-				<MiniStatistics
+				/> */}
+				{/* <MiniStatistics
 					startContent={
 						<IconBox
 							w='56px'
@@ -110,11 +110,11 @@ export default function UserReports() {
 					}
 					name='Total Projects'
 					value='2935'
-				/>
+				/> */}
 			</SimpleGrid>
 
 			<SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap='20px' mb='20px'>
-				<TotalSpent />
+				{/* <TotalSpent /> */}
 				<WeeklyRevenue />
 			</SimpleGrid>
 			<SimpleGrid columns={{ base: 1, md: 1, xl: 2 }} gap='20px' mb='20px'>
@@ -124,13 +124,10 @@ export default function UserReports() {
 					<PieCard />
 				</SimpleGrid>
 			</SimpleGrid>
-			<SimpleGrid columns={{ base: 1, md: 1, xl: 2 }} gap='20px' mb='20px'>
-				<ComplexTable tableData={tableDataComplex} />
-				<SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap='20px'>
-					<Tasks />
-					<MiniCalendar h='100%' minW='100%' selectRange={false} />
-				</SimpleGrid>
+			<SimpleGrid columns={{ base: 1, md: 1, xl: 1 }} gap='20px' mb='20px'>
+				<ComplexTable />
 			</SimpleGrid>
+
 		</Box>
 	);
 }

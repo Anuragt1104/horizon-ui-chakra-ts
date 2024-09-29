@@ -206,15 +206,15 @@ export const barChartOptionsUserActivity = {
 export const barChartDataConsumption = [
 	{
 		name: 'PRODUCT A',
-		data: [ 400, 370, 330, 390, 320, 350, 360, 320, 380 ]
+		data: [ 400, 370, 330, 390, 320, 350, 360, 320, 380,200,300,400,500,600 ]
 	},
 	{
 		name: 'PRODUCT B',
-		data: [ 400, 370, 330, 390, 320, 350, 360, 320, 380 ]
+		data: [ 400, 370, 330, 390, 320, 350, 360, 320, 380,240,120,230,450,600 ]
 	},
 	{
 		name: 'PRODUCT C',
-		data: [ 400, 370, 330, 390, 320, 350, 360, 320, 380 ]
+		data: [ 400, 370, 330, 390, 320, 350, 360, 320, 380, 200,300,400,500,600 ]
 	}
 ];
 
@@ -239,7 +239,7 @@ export const barChartOptionsConsumption: any = {
 		theme: 'dark'
 	},
 	xaxis: {
-		categories: [ '17', '18', '19', '20', '21', '22', '23', '24', '25' ],
+		categories: [ '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30' ],
 		show: false,
 		labels: {
 			show: true,
@@ -308,7 +308,7 @@ export const barChartOptionsConsumption: any = {
 
 export const pieChartOptions: any = {
 	labels: [ 'Your files', 'System', 'Empty' ],
-	colors: [ '#4318FF', '#6AD2FF', '#EFF4FB' ],
+	colors: [ '#4318FF', '#EFF4FB', '#EFF4FB' ],
 	chart: {
 		width: '50px'
 	},

@@ -65,33 +65,33 @@ export default function ComplexTable(props: { tableData: any }) {
 			),
 			cell: (info) => (
 			<Flex align='center'>
-				<Icon
-					w='24px'
-					h='24px'
-					me='5px'
-					color={
-						info.getValue() === 'Approved' ? (
-							'green.500'
-						) : info.getValue() === 'Disable' ? (
-							'red.500'
-						) : info.getValue() === 'Error' ? (
-							'orange.500'
-						) : null
-					}
-					as={
-						info.getValue() === 'Approved' ? (
-							MdCheckCircle
-						) : info.getValue() === 'Disable' ? (
-							MdCancel
-						) : info.getValue() === 'Error' ? (
-							MdOutlineError
-						) : null
-					}
-				/>
-				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{info.getValue()}
-				</Text>
-			</Flex> 
+												<Icon
+													w='24px'
+													h='24px'
+													me='5px'
+													color={
+														info.getValue() === 'Approved' ? (
+															'green.500'
+														) : info.getValue() === 'Disable' ? (
+															'red.500'
+														) : info.getValue() === 'Error' ? (
+															'orange.500'
+														) : null
+													}
+													as={
+														info.getValue() === 'Approved' ? (
+															MdCheckCircle
+														) : info.getValue() === 'Disable' ? (
+															MdCancel
+														) : info.getValue() === 'Error' ? (
+															MdOutlineError
+														) : null
+													}
+												/>
+												<Text color={textColor} fontSize='sm' fontWeight='700'>
+													{info.getValue()}
+												</Text>
+											</Flex> 
 			)
 		}),
 		columnHelper.accessor('date', {
@@ -159,7 +159,7 @@ export default function ComplexTable(props: { tableData: any }) {
 										<Th
 											key={header.id}
 											colSpan={header.colSpan}
-											pe='10px'
+											pe='10px' 
 											borderColor={borderColor}
 											cursor='pointer'
 											onClick={header.column.getToggleSortingHandler()}>
@@ -180,7 +180,7 @@ export default function ComplexTable(props: { tableData: any }) {
 						))}
 					</Thead>
 					<Tbody>
-						{table.getRowModel().rows.slice(0, 11).map((row) => {
+						{table.getRowModel().rows.slice(0, 5).map((row) => {
 							return (
 								<Tr key={row.id}>
 									{row.getVisibleCells().map((cell) => {
